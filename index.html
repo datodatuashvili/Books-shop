@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boock Shop</title>
+  </head>
+  <body>
+    <script>
+      fetch("./books.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          appendData(data);
+        })
+        .catch(function (err) {
+          console.log("error: " + err);
+        });
+      function appendData(data) {
+        var Container = document.createElement("div");
+        for (var i = 0; i < data.length; i++) {
+          var bookName = document.createElement("div");
+          var bookBy = document.createElement("div");
+          var bookCost = document.createElement("div");
+          var bookInfo = document.createElement("div");
+          var bookPicture = document.createElement("img");
+          bookPicture.src = data[i].imageLink;
+          bookName.innerHTML = "Book: " + data[i].title;
+          bookBy.innerHTML = "Written by: " + data[i].author;
+          bookCost.innerHTML = "Cost: " + data[i].price + "€";
+          bookInfo.innerHTML = "About: " + data[i].description;
+          Container.appendChild(bookPicture);
+          Container.appendChild(bookName);
+          Container.appendChild(bookBy);
+          Container.appendChild(bookCost);
+          Container.appendChild(bookInfo);
+        }
+        document.body.appendChild(Container);
+      }
+      var H1 = document.createElement("H1");
+      var T = document.createTextNode("Welcome to ammazing book shop!");
+      H1.appendChild(T);
+      document.body.appendChild(H1);
+      H1.style.textAlign = "center";
+      H1.style.padding = "20px";
+    </script>
+  </body>
+</html>
