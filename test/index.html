@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+    <title>Book Shop</title>
+  </head>
+  <body>
+    
+<script>
+fetch("./books.json")
+.then(function (response) {
+  return response.json();
+})
+.then(function (data) {
+  appendData(data);
+})
+.catch(function (err) {
+  console.log("error: " + err);
+});
+function appendData(data) {
+var Container = document.createElement("div");
+Container.className = "Gcontainer";
+for (var i = 0; i < data.length; i++) {
+  var subcontainer = document.createElement("div");
+  subcontainer.className = "Subcontainer"
+  var bookName = document.createElement("div");
+  var bookBy = document.createElement("div");
+  var bookCost = document.createElement("div");
+  var add = document.createElement("button");
+  add.className = "addbtn";
+  const bookInfo = document.createElement("div");
+  bookInfo.className = "info";
+  var bookPicture = document.createElement("img");
+  bookPicture.src = data[i].imageLink;
+  bookName.innerHTML = "Book: " + data[i].title;
+  bookBy.innerHTML = "Written by: " + data[i].author;
+  bookCost.innerHTML = "Cost: " + data[i].price + "$";
+  // bookInfo.innerHTML = "About: " + data[i].description;
+  bookInfo.innerHTML = "About: " + "";
+  subcontainer.appendChild(bookPicture);
+  subcontainer.appendChild(bookName);
+  subcontainer.appendChild(bookBy);
+  subcontainer.appendChild(bookCost);
+  subcontainer.appendChild(add);
+  subcontainer.appendChild(bookInfo);
+  Container.appendChild(subcontainer);
+
+  // bookInfo.style.display = "none";
+
+  var addtext = document.createTextNode("Add to Bag");
+  add.appendChild(addtext);
+
+  const readmore = document.createElement("button");
+  bookInfo.appendChild(readmore);
+  subcontainer.appendChild(readmore);
+  readmore.className = "readm";
+  readmore.setAttribute("id", "open");
+  readmore.innerText = "Show More";
+
+  // var btnmore = document.createTextNode("Show More");
+  // readmore.appendChild(btnmore);
+  // btnmore.className = "bmore";
+
+
+  const contRead = document.createElement("div");
+  bookInfo.appendChild(contRead);
+  contRead.className = "cont-Read";
+
+
+  const contRead1 = document.createElement("div");
+  contRead.appendChild(contRead1);
+  contRead.className = "cont-Read1";
+  contRead1.setAttribute("id", "cont_Read");
+
+
+  const readmoreText = document.createTextNode(data[i].description);
+  contRead1.appendChild(readmoreText);
+
+
+
+  const readless = document.createElement("button");
+  contRead1.appendChild(readless);
+  readless.className = "readl";
+  readless.setAttribute("id", "close");
+
+
+  const btnless = document.createTextNode("Show less");
+  readless.appendChild(btnless);
+  btnless.className = "bless";
+
+
+  const open = document.getElementById('open');
+  const cont_Read = document.getElementById('cont_Read');
+  const close = document.getElementById('close');
+
+  // open.addEventListener('click', () => {
+  //   cont_Read.classList.add('show');
+  // });
+  // close.addEventListener('click', () => {
+  //   cont_Read.classList.remove('show');
+  // });
+
+  readmore.addEventListener('click', () => {
+    contRead.classList.add('show');
+  });
+  readless.addEventListener('click', () => {
+    contRead.classList.remove('show');
+  });
+  // readmore.onclick = function datoShow(){
+  // if (bookInfo.style.display === "none"){
+  //     bookInfo.style.display = "block";
+  //   }
+  // }
+
+
+}
+document.body.appendChild(Container);
+}
+
+
+
+
+
+
+var header = document.createElement("div");
+document.body.appendChild(header);
+header.className = "header";
+
+var image = document.createElement("img");
+image.src = "./pics/book.jpg";
+// document.body.appendChild(image);
+header.appendChild(image)
+image.className = "Image";
+
+var H1 = document.createElement("H1");
+header.appendChild(H1);
+H1.className = "h1";
+
+var T = document.createTextNode("Get Your Magic Book!");
+H1.appendChild(T);
+T.className = "Text";
+
+
+
+
+
+</script>
+  </body>
+</html>

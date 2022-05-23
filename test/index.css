@@ -1,0 +1,91 @@
+/* .book-name-style{
+    position: absolute;
+    height: 20px;
+    width: 100px;
+    left: 0%;
+    right: 0%;
+    top: 500px;
+} */
+/* .book-name-style:hover{
+    background-color: #F1CDB3;
+} */
+
+.body{
+    display: flex;
+    width: 1280px;
+}
+
+.Gcontainer{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.Image{
+    width: 1280px;
+    display: flex;
+    margin: auto;
+}
+
+.Subcontainer{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.info{
+    flex-wrap: wrap;
+}
+
+.header{
+    position: center;
+    display: flex;
+    margin: auto;
+}
+.h1{
+    display: flex;
+    margin: auto;
+    position: center;
+    width: 200px;
+}
+.text{
+    font-family: Georgia;
+}
+.addbtn{
+    background-color: rgb(226, 223, 43);
+    border-radius: 50px;
+    width: 130px;
+    height: 30px;
+    margin: auto;
+    cursor: pointer;
+}
+.addbtn:hover{
+    background-color: bisque;
+}
+
+/* .cont-Read{
+    background-color: aqua;
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    top: 0;
+    left: 0;
+
+}
+.cont-Read.show {
+    pointer-events: auto;
+    opacity: 1;
+} */
+
+.cont-Read1{
+    background-color: aqua;
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    top: 0;
+    left: 0;
+
+}
+.cont-Read1.show {
+    pointer-events: auto;
+    opacity: 1;
+}
