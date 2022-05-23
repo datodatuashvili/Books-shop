@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="container content-section">
+      <!-- <div class="orderC"> -->
+        <!-- <div class="orderSC">
+        <h2 class="orderh1">Your Order</h2>
+        <div class="cart-row">
+          <span class="cart-item cart-header cart-column">Book Name</span><br>
+          <span class="cart-quantity cart-header cart-column">Author</span><br>
+          <span class="cart-price cart-header cart-column">Price</span><br>
+      </div> -->
+        <!-- <div class="cart-items"></div> -->
+        <!-- <div class="cart-total">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price">$0</span>
+        </div> -->
+        <!-- <button class="btn btn-primary btn-purchase" type="button">
+          PURCHASE
+        </button> -->
+
+        <div class="deliverC" style="margin-top: 250px; margin-left: -400px;" >
+          <h2 class="deliverh1">Order Form</h2>
+          <ul class="dinputt">
+            <li>Name:</li>
+            <br />
+            <li>Surname:</li>
+            <br />
+            <li>Delivery date:</li>
+            <br />
+            <li>Street:</li>
+            <br />
+            <li>House number:</li>
+            <br />
+            <li>Flat number:</li>
+            <br />
+            <li>Choose the payment type:</li>
+            <br /><br /><br />
+            <li>Choose 2 gifts:</li>
+          </ul>
+          <ul>
+            <input id="name-input" class="dinput" type="text" /><br />
+            <input id="surname-input" class="dinput" type="text" /><br />
+            <input id="date-input" class="dinput" type="text" /><br />
+            <input id="street-input" class="dinput" type="text" /><br />
+            <input id="house-input" class="dinput" type="text" /><br />
+            <input id="flat-input" class="dinput" type="text" /><br />
+            <label class="dinput" for="Cash"
+              ><input id="Cash" type="radio" name="Cash-Card" />Cash</label
+            >
+            <label class="dinput"
+              ><input id="Card" type="radio" name="Cash-Card" />Card</label
+            ><br /><br />
+            <!-- <p id="must">Must select atleast one</p> -->
+            <label class="dinput"
+              ><input
+                id="pack as a gift"
+                type="checkbox"
+                name="personality"
+                value="pack as a gift"
+                checked
+              />
+              pack as a gift</label
+            >
+            <label class="dinput"
+              ><input
+                id="add postcard"
+                type="checkbox"
+                name="personality"
+                value="add postcard"
+              />
+              add postcard</label
+            >
+            <label class="dinput"
+              ><input
+                id="provide 2% discount to the next time"
+                type="checkbox"
+                name="personality"
+                value="provide 2% discount to the next time"
+              />
+              provide 2% discount to the next time</label
+            >
+            <label class="dinput"
+              ><input
+                id="branded pen or pencil"
+                type="checkbox"
+                name="personality"
+                value="branded pen or pencil"
+              />
+              branded pen or pencil</label
+            >
+            <input type="submit" value="Complete" id="complete">
+          </ul>
+        </div>
+      </div>
+          <div id="last">
+        <p id="p1p"></p>
+        <p id="p2p"></p>
+        <p id="p3p"></p>
+        <p id="p4p"></p>
+        <p id="p5p"></p>
+        <p id="p6p"></p>
+<button>Done</button>
+
+    </div>
+    </section>
+    <script>
+      let complett = document.getElementById("complete");
+let lastStep = document.getElementById("last");
+let completname = document.getElementById("name-input");
+let completsurname = document.getElementById("surname-input");
+let completdate = document.getElementById("date-input");
+let completstreet = document.getElementById("street-input");
+let complethouse= document.getElementById("house-input");
+let completflat= document.getElementById("flat-input");
+
+
+
+completname.addEventListener('keyup', function(){
+
+            function allLetter(inputtxt){
+        var letters = /^[A-Za-z]{1,4}$/;
+        if(inputtxt.value.match(letters)){
+            completname.style.border = '1px solid black';
+            // userCheck = true;
+            
+        }else{
+                completname.style.border= '4px solid red';
+                // userCheck = false;
+            }
+        }
+        allLetter(completname);
+        });
+  
+
+completsurname.addEventListener('keyup', function(){
+
+function allLetter(inputtxt){
+var letters = /^[A-Za-z]{1,5}$/;
+if(inputtxt.value.match(letters)){
+completsurname.style.border = '1px solid black';
+
+
+}else{
+    completsurname.style.border= '4px solid red';
+
+}
+}
+allLetter(completsurname);
+});
+
+
+
+        completstreet.addEventListener('keyup', function(){
+            if(completstreet.value.length < 5){
+                
+                completstreet.style.border= '4px solid red';
+            
+            }else {
+                
+               completstreet.style.border = '1px solid black';
+            }
+        });
+
+
+complethouse.addEventListener('keyup', function(){
+            function allNum(input){
+            var num = /^[0-9]+$/;
+            if(input.value.match(num)){
+              complethouse.style.border = '1px solid black';
+      
+                
+            }else{
+              complethouse.style.border= '4px solid red';
+                
+                }
+            }
+            allNum(complethouse);
+        });
+
+
+completflat.addEventListener('keyup', function(){
+            function allNum(input){
+            var num = /^[0-9]+$/;
+            if(input.value.match(num)){
+              completflat.style.border = '1px solid black';
+      
+                
+            }else{
+              completflat.style.border= '4px solid red';
+                
+                }
+            }
+            allNum(completflat);
+        });
+
+
+
+var mustMsg = document.getElementById("must");
+var paymentCheck = false;
+function confirm(){
+    
+    if(document.getElementById("Cash").checked===true) {
+        must.style.display="none";
+        paymentCheck = true;
+    
+    }else if(document.getElementById("Card").checked===true) {
+      must.style.display="none";          
+      paymentCheck = true;
+    }else{
+      must.style.display="block";
+                paymentCheck = false;
+    }
+}
+
+
+
+
+
+let Pname = document.getElementById("p1p");
+let Psurname = document.getElementById("p2p");
+let Pdate = document.getElementById("p3p");
+let Pstreet = document.getElementById("p4p");
+let Phouse= document.getElementById("p5p");
+let Pflat= document.getElementById("p6p");
+
+complett.onclick=()=>{
+    lastStep.style.display = "block";
+    
+Pname.innerText = "Name: " + completname.value;
+Psurname.innerText = "Surname: " + completsurname.value;
+Pdate.innerText = "Date: " + completdate.value;
+Pstreet.innerText = "Street: " + completstreet.value;
+Phouse.innerText = "House: " + complethouse.value;
+Pflat.innerText = "Flate: " +completflat.value;
+
+}
+    </script>
+  </body>
+</html>
