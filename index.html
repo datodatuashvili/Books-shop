@@ -4,182 +4,232 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <title>Book Shop</title>
   </head>
   <body>
-<script>
-fetch("./books.json")
-.then(function (response) {
-  return response.json();
-})
-.then(function (data) {
-  appendData(data);
-})
-.catch(function (err) {
-  console.log("error: " + err);
-});
-function appendData(data) {
-var Container = document.createElement("div");
-Container.className = "container content-section";
-for (var i = 0; i < data.length; i++) {
-  var subcontainer = document.createElement("div");
-  subcontainer.className = "subcontainer";
-  var subshop = document.createElement("div");
-  subshop.className = "shop-item";
-  var bookName = document.createElement("div");
-  bookName.className = "shop-item-title";
-  var bookBy = document.createElement("div");
-  bookBy.className = "shop-item-image";
-  var addcost =document.createElement("div");
-  addcost.className = "shop-item-details"
-  var bookCost = document.createElement("div");
-  bookCost.className = "shop-item-price";
-  var add = document.createElement("button");
-  add.className = "btn btn-primary shop-item-button";
-  const bookInfo = document.createElement("div");
-  bookInfo.className = "info";
-  var bookPicture = document.createElement("img");
-  bookPicture.src = data[i].imageLink;
-  bookName.innerHTML = "Book: " + data[i].title;
-  bookBy.innerHTML = "Written by: " + data[i].author;
-  bookCost.innerHTML = "Cost: " + data[i].price + "$";
-  bookInfo.innerHTML = "About: " + "";
-  subcontainer.appendChild(bookPicture);
-  subshop.appendChild(bookName);
-  subshop.appendChild(bookBy);
-  addcost.appendChild(bookCost);
-  addcost.appendChild(add);
-  subshop.appendChild(addcost);
-  subcontainer.appendChild(subshop);
-  subcontainer.appendChild(bookInfo);
-  Container.appendChild(subcontainer);
+    <script>
+      fetch("./books.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          appendData(data);
+        })
+        .catch(function (err) {
+          console.log("error: " + err);
+        });
+      function appendData(data) {
+        var Container = document.createElement("div");
+        let anotherCont = document.createElement("section");
+        Container.className = "container content-section";
+        let allPrice = 0;
+        for (var i = 0; i < data.length; i++) {
+          var subcontainer = document.createElement("div");
+          subcontainer.className = "subcontainer";
+          var subshop = document.createElement("div");
+          subshop.className = "shop-item";
+          let bookName = document.createElement("div");
+          bookName.className = "shop-item-title";
+          let bookBy = document.createElement("div");
+          bookBy.className = "shop-item-image";
+          var addcost = document.createElement("div");
+          addcost.className = "shop-item-details";
+          let bookCost = document.createElement("div");
+          bookCost.className = "shop-item-price";
+          var add = document.createElement("button");
+          add.className = "btn btn-primary shop-item-button";
+          const bookInfo = document.createElement("div");
+          bookInfo.className = "info";
+          var bookPicture = document.createElement("img");
+          bookPicture.src = data[i].imageLink;
+          bookName.innerHTML = "Book: " + data[i].title;
+          bookBy.innerHTML = "Written by: " + data[i].author;
+          bookCost.innerHTML = "Cost: " + data[i].price + "$";
+          bookInfo.innerHTML = "About: " + "";
+          subcontainer.appendChild(bookPicture);
+          subshop.appendChild(bookName);
+          subshop.appendChild(bookBy);
+          addcost.appendChild(bookCost);
+          addcost.appendChild(add);
+          subshop.appendChild(addcost);
+          subcontainer.appendChild(subshop);
+          subcontainer.appendChild(bookInfo);
+          Container.appendChild(subcontainer);
+          let searchEl = document;
 
-  var addtext = document.createTextNode("Add to Bag");
-  add.appendChild(addtext);
+          //     anotherCont.innerHTML = `<section class="container content-section">
+          //   <div class="orderC">
+          //     <div class="orderSC">
+          //       <h2 class="orderh1">Your Order</h2>
+          //       <div id="cartrowID" class="cart-row">
+          //         <div class="cart-item cart-header cart-column">Book Name</div><br>
+          //         <div class="cart-quantity cart-header cart-column">Author</div><br>
+          //         <div class="cart-price cart-header cart-column">Price</div><br>
+          //     </div>
+          //     <div class="cart-items" id="cart-items">
+          //     </div>
 
-  const readmore = document.createElement("button");
-  bookInfo.appendChild(readmore);
-  readmore.className = "readm";
-  readmore.setAttribute("id", "open");
-  readmore.innerText = "Show More";
+          //     <div class="purchase-div" id="purchaseID" >
+          //      <strong> <p class="cart-total" id="cart-total">
+          // Total: 0$
+          //     </p></strong>
+          //     <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+          //   </div>
 
-  const contRead = document.createElement("div");
-  bookInfo.appendChild(contRead);
-  contRead.className = "cont-Read";
+          //   </div>
+          // </section>`;
 
+          var addtext = document.createTextNode("Add to Bag");
+          add.appendChild(addtext);
+          add.onclick = function add2Bag() {
+            let addElement = document.getElementById("cart-items");
+            let testul = document.createElement("ul");
+            let test1 = document.createElement("li");
+            let test2 = document.createElement("li");
+            let test3 = document.createElement("li");
+            // addElement.append(hrBorder);
+            test1.style.width = "200px";
+            test2.style.width = "200px";
+            test3.style.width = "200px";
+            test1.innerText = bookName.innerText;
+            test2.innerText = bookBy.innerText;
+            test3.innerText = bookCost.innerText;
+            testul.append(test1);
+            testul.append(test2);
+            testul.append(test3);
+            addElement.append(testul);
+            let monyCount = document.getElementById("cart-total");
+            let variab = bookCost.innerText.replace(/\D/g, "");
+            // let variab = bookCost.innerText.slice(0, -1);
 
-  const contRead1 = document.createElement("div");
-  contRead.appendChild(contRead1);
-  contRead.className = "cont-Read1";
-  contRead1.setAttribute("id", "cont_Read");
+            allPrice += parseInt(variab);
+            console.log(variab);
+            monyCount.innerText = `Total: ${allPrice}$`;
+            // addElement.append(bookBy.innerText);
+            // addElement.append(bookCost.innerText);
+          };
 
-  const readmoreText = document.createTextNode(data[i].description);
-  contRead1.appendChild(readmoreText);
+          const readmore = document.createElement("button");
+          bookInfo.appendChild(readmore);
+          readmore.className = "readm";
+          readmore.setAttribute("id", "open");
+          readmore.innerText = "Show More";
 
-  const readless = document.createElement("button");
-  contRead1.appendChild(readless);
-  readless.className = "readl";
-  readless.setAttribute("id", "close");
+          const contRead = document.createElement("div");
+          bookInfo.appendChild(contRead);
+          contRead.className = "cont-Read";
 
-  const btnless = document.createTextNode("Show less");
-  readless.appendChild(btnless);
-  btnless.className = "bless";
+          const contRead1 = document.createElement("div");
+          contRead.appendChild(contRead1);
+          contRead.className = "cont-Read1";
+          contRead1.setAttribute("id", "cont_Read");
 
-  const open = document.getElementById('open');
-  const cont_Read = document.getElementById('cont_Read');
-  const close = document.getElementById('close');
+          const readmoreText = document.createTextNode(data[i].description);
+          contRead1.appendChild(readmoreText);
 
-  readmore.addEventListener('click', () => {
-    contRead.classList.add('show');
-  });
-  readless.addEventListener('click', () => {
-    contRead.classList.remove('show');
-  });
-  
-}
+          const readless = document.createElement("button");
+          contRead1.appendChild(readless);
+          readless.className = "readl";
+          readless.setAttribute("id", "close");
 
-document.body.appendChild(Container);
-}
+          const btnless = document.createTextNode("Show less");
+          readless.appendChild(btnless);
+          btnless.className = "bless";
 
-var header = document.createElement("div");
-document.body.appendChild(header);
-header.className = "header";
+          const open = document.getElementById("open");
+          const cont_Read = document.getElementById("cont_Read");
+          const close = document.getElementById("close");
 
-var image = document.createElement("img");
-image.src = "./pics/book.jpg";
-header.appendChild(image);
-image.className = "Image";
+          readmore.addEventListener("click", () => {
+            contRead.classList.add("show");
+          });
+          readless.addEventListener("click", () => {
+            contRead.classList.remove("show");
+          });
+        }
+        anotherCont.setAttribute("id", "bagID");
+        anotherCont.className = "container content-section";
+        let orderC = document.createElement("div");
+        orderC.className = "orderC";
+        anotherCont.appendChild(orderC);
+        let orderSC = document.createElement("div");
+        orderSC.className = "orderSC";
+        orderC.appendChild(orderSC);
+        let orderH2 = document.createElement("h2");
+        orderH2.className = "orderh1";
+        let cartrow = document.createElement("div");
+        cartrow.className = "cart-row";
+        cartrow.setAttribute("id", "cartrowID");
+        orderSC.appendChild(orderH2);
+        orderSC.appendChild(cartrow);
+        let cartName = document.createElement("div");
+        let cartAuthor = document.createElement("div");
+        let cartPrice = document.createElement("div");
+        cartName.className = "cart-item cart-header cart-column";
+        cartAuthor.className = "cart-quantity cart-header cart-column";
+        cartPrice.className = "cart-price cart-header cart-column";
+        cartName.innerText = "Book Name";
+        cartAuthor.innerText = "Author";
+        cartPrice.innerText = "Price";
+        cartrow.appendChild(cartName);
+        cartrow.appendChild(cartAuthor);
+        cartrow.appendChild(cartPrice);
+        let cartItems = document.createElement("div");
+        cartItems.className = "cart-items";
+        cartItems.setAttribute("id", "cart-items");
+        orderC.appendChild(cartItems);
+        let purchaseDiv = document.createElement("div");
+        purchaseDiv.className = "purchase-div";
+        purchaseDiv.setAttribute("id", "purchaseID");
+        let markStrong = document.createElement("strong");
+        let totalCart = document.createElement("p");
+        totalCart.className = "cart-total";
+        totalCart.setAttribute("id", "cart-total");
+        totalCart.innerText = "Total: 0$";
+        markStrong.appendChild(totalCart);
+        purchaseDiv.appendChild(markStrong);
+        let btnPurchase = document.createElement("button");
+        btnPurchase.innerText = "PURCHASE";
+        btnPurchase.className = "btn btn-primary btn-purchase";
+        btnPurchase.onclick = () => {
+          location.href = "./buy.html";
+        };
+        purchaseDiv.appendChild(btnPurchase);
+        orderC.appendChild(purchaseDiv);
 
-var H1 = document.createElement("H1");
-header.appendChild(H1);
-H1.className = "h1";
+        document.body.appendChild(header);
+        document.body.appendChild(Container);
+        Container.appendChild(anotherCont);
+      }
+      // let targetBag = document.getElementById("cartrowID");
+      // targetBag.appendChild(addElement);
+      var header = document.createElement("div");
+      document.body.appendChild(header);
+      header.className = "header";
 
-var T = document.createTextNode("Get Your Magic Book!");
-H1.appendChild(T);
-T.className = "Text";
+      var image = document.createElement("img");
+      image.src = "./pics/book.jpg";
+      header.appendChild(image);
+      image.className = "Image";
 
+      var H1 = document.createElement("H1");
+      header.appendChild(H1);
+      H1.className = "h1";
 
+      var T = document.createTextNode("Get Your Magic Book!");
+      H1.appendChild(T);
+      T.className = "Text";
+      var bag = document.createElement("button");
+      var bagDiv = document.createElement("div");
 
-</script>     
-
-<section class="container content-section">
-  <div class="orderC">
-    <div class="orderSC">
-      <h2 class="orderh1">Your Order</h2>
-      <div class="cart-row">
-        <span class="cart-item cart-header cart-column">Book Name</span><br>
-        <span class="cart-quantity cart-header cart-column">Author</span><br>
-        <span class="cart-price cart-header cart-column">Price</span><br>
-    </div>
-    <div class="cart-items">
-    </div>
-    <div class="cart-total">
-        <strong class="cart-total-title">Total</strong>
-        <span class="cart-total-price">$0</span>
-    </div>
-    <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
-
-    <div class="deliverC">
-      <h2 class="deliverh1">Order Form</h2>
-      <ul class="dinputt">
-        <li>Name:</li><br>
-        <li>Surname:</li><br>
-        <li>Delivery date:</li><br>
-        <li>Street:</li><br>
-        <li>House number:</li><br>
-        <li>Flat number:</li><br>
-        <li>Choose the payment type:</li><br><br><br>
-        <li>Choose 2 gifts:</li>
-      </ul>
-      <ul>
-      <input class="dinput" type="text"><br>
-      <input class="dinput" type="text"><br>
-      <input class="dinput" type="text"><br>
-      <input class="dinput" type="text"><br>
-      <input class="dinput" type="text"><br>
-      <input class="dinput" type="text"><br>
-      <label class="dinput" for="Cash"><input id="Cash" type="radio" name="Cash-Card">Cash</label>
-      <label class="dinput"><input id="Card" type="radio" name="Cash-Card">Card</label><br><br>
-      <label class="dinput"><input id="pack as a gift" type="checkbox" name="personality" value="pack as a gift" checked> pack as a gift</label>
-      <label class="dinput"><input id="add postcard" type="checkbox" name="personality" value="add postcard"> add postcard</label>
-      <label class="dinput"><input id="provide 2% discount to the next time" type="checkbox" name="personality" value="provide 2% discount to the next time"> provide 2% discount to the next time</label>  
-      <label class="dinput"><input id="branded pen or pencil" type="checkbox" name="personality" value="branded pen or pencil"> branded pen or pencil</label>  
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
+      bag.innerText = "See my bag";
+      bag.className = "bag-class";
+      bag.onclick = () => {
+        location.href = "#bagID";
+      };
+      bagDiv.append(bag);
+      header.appendChild(bagDiv);
+    </script>
   </body>
 </html>
